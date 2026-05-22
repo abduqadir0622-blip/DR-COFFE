@@ -1,1 +1,342 @@
+<!DOCTYPE html>
+<html lang="so">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Cafè & Pizza Hub</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #0b0f19;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        .cyber-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .cyber-card:hover {
+            transform: translateY(-5px);
+            border-color: #06b6d4;
+            box-shadow: 0 10px 25px -5px rgba(6, 182, 212, 0.2);
+        }
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #1f2937;
+            border-radius: 10px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #06b6d4;
+        }
+    </style>
+</head>
+<body class="text-gray-100 min-height-screen flex justify-center items-start p-0 sm:p-4">
 
+    <div class="w-full max-w-md bg-[#0f172a] min-h-screen sm:min-h-[850px] sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col relative border border-gray-800">
+        
+        <div class="p-5 bg-gradient-to-r from-cyan-900/40 to-slate-900 border-b border-gray-800 sticky top-0 z-50 backdrop-blur-md">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-xl font-extrabold tracking-wider bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">CYBER MENU</h1>
+                    <p class="text-xs text-gray-400">Dalbo raashinka iyo cabitaanka ugu dambeeyey</p>
+                </div>
+                <div class="relative cursor-pointer" onclick="scrollToCart()">
+                    <div class="bg-gray-800 p-2.5 rounded-xl border border-gray-700">
+                        <i class="fa-solid fa-basket-shopping text-cyan-400 text-lg"></i>
+                    </div>
+                    <span id="cart-badge" class="absolute -top-2 -right-2 bg-red-500 text-white font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center hidden animate-bounce">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-1 overflow-y-auto p-4 space-y-6 custom-scroll pb-32">
+            
+            <div>
+                <div class="flex items-center gap-2 mb-3">
+                    <i class="fa-solid fa-mug-hot text-amber-500 text-lg"></i>
+                    <h2 class="text-sm font-bold tracking-widest text-amber-500 uppercase">Qaybta Coffee-ga</h2>
+                </div>
+                <div class="grid grid-cols-1 gap-3">
+                    <div class="cyber-card p-3 rounded-2xl flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 text-amber-400 text-xl"><i class="fa-solid fa-coffee"></i></div>
+                            <div>
+                                <h3 class="font-bold text-gray-200 text-sm">Espresso Single</h3>
+                                <p class="text-xs text-cyan-400 font-semibold">$1.50</p>
+                            </div>
+                        </div>
+                        <button onclick="addToCart('Espresso Single', 1.50)" class="bg-gray-800 hover:bg-cyan-500 hover:text-black text-cyan-400 p-2 rounded-xl border border-gray-700 transition-colors font-bold text-sm px-4">+ Add</button>
+                    </div>
+                    <div class="cyber-card p-3 rounded-2xl flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 text-amber-400 text-xl"><i class="fa-solid fa-whiskey-glass"></i></div>
+                            <div>
+                                <h3 class="font-bold text-gray-200 text-sm">Spanish Latte</h3>
+                                <p class="text-xs text-cyan-400 font-semibold">$2.50</p>
+                            </div>
+                        </div>
+                        <button onclick="addToCart('Spanish Latte', 2.50)" class="bg-gray-800 hover:bg-cyan-500 hover:text-black text-cyan-400 p-2 rounded-xl border border-gray-700 transition-colors font-bold text-sm px-4">+ Add</button>
+                    </div>
+                    <div class="cyber-card p-3 rounded-2xl flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 text-amber-400 text-xl"><i class="fa-solid fa-ice-cream"></i></div>
+                            <div>
+                                <h3 class="font-bold text-gray-200 text-sm">Iced Caramel Macchiato</h3>
+                                <p class="text-xs text-cyan-400 font-semibold">$3.00</p>
+                            </div>
+                        </div>
+                        <button onclick="addToCart('Iced Caramel Macchiato', 3.00)" class="bg-gray-800 hover:bg-cyan-500 hover:text-black text-cyan-400 p-2 rounded-xl border border-gray-700 transition-colors font-bold text-sm px-4">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="flex items-center gap-2 mb-3">
+                    <i class="fa-solid fa-pizza-slice text-red-500 text-lg"></i>
+                    <h2 class="text-sm font-bold tracking-widest text-red-500 uppercase">Qaybta Pizza-da</h2>
+                </div>
+                <div class="grid grid-cols-1 gap-3">
+                    <div class="cyber-card p-3 rounded-2xl flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center border border-red-500/20 text-red-400 text-xl"><i class="fa-solid fa-circle-dot"></i></div>
+                            <div>
+                                <h3 class="font-bold text-gray-200 text-sm">Pizza Pepperoni (Large)</h3>
+                                <p class="text-xs text-cyan-400 font-semibold">$7.50</p>
+                            </div>
+                        </div>
+                        <button onclick="addToCart('Pizza Pepperoni (Large)', 7.50)" class="bg-gray-800 hover:bg-cyan-500 hover:text-black text-cyan-400 p-2 rounded-xl border border-gray-700 transition-colors font-bold text-sm px-4">+ Add</button>
+                    </div>
+                    <div class="cyber-card p-3 rounded-2xl flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center border border-red-500/20 text-red-400 text-xl"><i class="fa-solid fa-leaf"></i></div>
+                            <div>
+                                <h3 class="font-bold text-gray-200 text-sm">Pizza Vegetarian (Medium)</h3>
+                                <p class="text-xs text-cyan-400 font-semibold">$5.50</p>
+                            </div>
+                        </div>
+                        <button onclick="addToCart('Pizza Vegetarian (Medium)', 5.50)" class="bg-gray-800 hover:bg-cyan-500 hover:text-black text-cyan-400 p-2 rounded-xl border border-gray-700 transition-colors font-bold text-sm px-4">+ Add</button>
+                    </div>
+                    <div class="cyber-card p-3 rounded-2xl flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center border border-red-500/20 text-red-400 text-xl"><i class="fa-solid fa-drumstick-bite"></i></div>
+                            <div>
+                                <h3 class="font-bold text-gray-200 text-sm">BBQ Chicken Pizza</h3>
+                                <p class="text-xs text-cyan-400 font-semibold">$8.00</p>
+                            </div>
+                        </div>
+                        <button onclick="addToCart('BBQ Chicken Pizza', 8.00)" class="bg-gray-800 hover:bg-cyan-500 hover:text-black text-cyan-400 p-2 rounded-xl border border-gray-700 transition-colors font-bold text-sm px-4">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="flex items-center gap-2 mb-3">
+                    <i class="fa-solid fa-bowl-rice text-teal-400 text-lg"></i>
+                    <h2 class="text-sm font-bold tracking-widest text-teal-400 uppercase">Chicken & Chips</h2>
+                </div>
+                <div class="grid grid-cols-1 gap-3">
+                    <div class="cyber-card p-3 rounded-2xl flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-xl bg-teal-500/10 flex items-center justify-center border border-teal-500/20 text-teal-400 text-xl"><i class="fa-solid fa-box"></i></div>
+                            <div>
+                                <h3 class="font-bold text-gray-200 text-sm">Chicken Jibsi Full Box</h3>
+                                <p class="text-xs text-cyan-400 font-semibold">$4.50</p>
+                            </div>
+                        </div>
+                        <button onclick="addToCart('Chicken Jibsi Full Box', 4.50)" class="bg-gray-800 hover:bg-cyan-500 hover:text-black text-cyan-400 p-2 rounded-xl border border-gray-700 transition-colors font-bold text-sm px-4">+ Add</button>
+                    </div>
+                    <div class="cyber-card p-3 rounded-2xl flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-xl bg-teal-500/10 flex items-center justify-center border border-teal-500/20 text-teal-400 text-xl"><i class="fa-solid fa-hotdog"></i></div>
+                            <div>
+                                <h3 class="font-bold text-gray-200 text-sm">Crispy Tenders + Fries</h3>
+                                <p class="text-xs text-cyan-400 font-semibold">$5.00</p>
+                            </div>
+                        </div>
+                        <button onclick="addToCart('Crispy Tenders + Fries', 5.00)" class="bg-gray-800 hover:bg-cyan-500 hover:text-black text-cyan-400 p-2 rounded-xl border border-gray-700 transition-colors font-bold text-sm px-4">+ Add</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-900/80 border border-gray-800 p-4 rounded-2xl space-y-3">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-truck text-cyan-400"></i>
+                    <h3 class="font-bold text-sm uppercase text-gray-300">Habka Delivery-ga (Darafeele)</h3>
+                </div>
+                <div class="grid grid-cols-3 gap-2">
+                    <label class="cursor-pointer">
+                        <input type="radio" name="delivery" value="Guri" checked onchange="updateTotal()" class="peer sr-only">
+                        <div class="p-2 text-center text-xs font-bold rounded-xl bg-gray-800 border border-gray-700 text-gray-400 peer-checked:bg-cyan-500/10 peer-checked:border-cyan-400 peer-checked:text-cyan-400 transition-all">
+                            🏡 Guri ($1.50)
+                        </div>
+                    </label>
+                    <label class="cursor-pointer">
+                        <input type="radio" name="delivery" value="Xafiis" onchange="updateTotal()" class="peer sr-only">
+                        <div class="p-2 text-center text-xs font-bold rounded-xl bg-gray-800 border border-gray-700 text-gray-400 peer-checked:bg-cyan-500/10 peer-checked:border-cyan-400 peer-checked:text-cyan-400 transition-all">
+                            🏢 Xafiis ($1.50)
+                        </div>
+                    </label>
+                    <label class="cursor-pointer">
+                        <input type="radio" name="delivery" value="Jaamacad" onchange="updateTotal()" class="peer sr-only">
+                        <div class="p-2 text-center text-xs font-bold rounded-xl bg-gray-800 border border-gray-700 text-gray-400 peer-checked:bg-cyan-500/10 peer-checked:border-cyan-400 peer-checked:text-cyan-400 transition-all">
+                            🎓 Jaamacad ($2.00)
+                        </div>
+                    </label>
+                </div>
+                <input type="text" id="delivery-address" placeholder="Ku qor ciwaankaaga saxda ah halkan..." class="w-full bg-black/40 border border-gray-800 rounded-xl p-2.5 text-xs focus:outline-none focus:border-cyan-400 text-gray-200">
+            </div>
+
+            <div id="cart-section" class="bg-slate-900/50 border border-dashed border-gray-800 p-4 rounded-2xl">
+                <h3 class="font-bold text-sm text-gray-300 mb-3 flex items-center justify-between">
+                    <span>Waxaad Dooratay:</span>
+                    <button onclick="clearCart()" class="text-xs text-red-400 font-normal hover:underline">Nadiifi</button>
+                </h3>
+                <div id="cart-items" class="space-y-2 text-xs text-gray-400">
+                    <p class="text-center py-4 text-gray-500">Koonbadaadu hadda waa ebar. Fadlan wax ku dar.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-[#0b0f19] via-[#0f172a] to-[#0f172a]/90 border-t border-gray-800 space-y-3">
+            <div class="flex justify-between items-center px-2">
+                <span class="text-xs text-gray-400 font-medium">Wadarta Guud:</span>
+                <span id="grand-total" class="text-xl font-black text-emerald-400">$0.00</span>
+            </div>
+            <button onclick="sendOrderViaWhatsApp()" class="w-full bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 text-black font-black text-sm p-4 rounded-2xl flex items-center justify-center gap-3 shadow-lg shadow-green-900/20 active:scale-[0.98] transition-all uppercase tracking-wider cursor-pointer">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+                La Xiriir Kaashiyeerka
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        let cart = [];
+        const whatsappNumber = "+252614410622";
+
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+            updateCartUI();
+        }
+
+        function changeQty(name, amount) {
+            const item = cart.find(item => item.name === name);
+            if (item) {
+                item.qty += amount;
+                if (item.qty <= 0) {
+                    cart = cart.filter(i => i.name !== name);
+                }
+            }
+            updateCartUI();
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartBadge = document.getElementById('cart-badge');
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="text-center py-4 text-gray-500">Koonbadaadu hadda waa ebar. Fadlan wax ku dar.</p>';
+                cartBadge.classList.add('hidden');
+                updateTotal();
+                return;
+            }
+
+            let totalItems = cart.reduce((acc, item) => acc + item.qty, 0);
+            cartBadge.innerText = totalItems;
+            cartBadge.classList.remove('hidden');
+
+            cartItemsContainer.innerHTML = '';
+            cart.forEach(item => {
+                const itemRow = document.createElement('div');
+                itemRow.className = 'flex justify-between items-center bg-black/20 p-2.5 rounded-xl border border-gray-800/60';
+                itemRow.innerHTML = `
+                    <div>
+                        <p class="font-bold text-gray-200">${item.name}</p>
+                        <p class="text-[11px] text-cyan-400 font-medium">$${(item.price * item.qty).toFixed(2)} (${item.qty} x $${item.price.toFixed(2)})</p>
+                    </div>
+                    <div class="flex items-center gap-2 bg-gray-800/80 rounded-lg p-1 border border-gray-750">
+                        <button onclick="changeQty('${item.name}', -1)" class="w-6 h-6 rounded flex items-center justify-center bg-gray-750 text-gray-300 font-bold hover:bg-gray-700 text-xs">-</button>
+                        <span class="w-4 text-center font-bold text-gray-200 text-xs">${item.qty}</span>
+                        <button onclick="changeQty('${item.name}', 1)" class="w-6 h-6 rounded flex items-center justify-center bg-gray-750 text-gray-300 font-bold hover:bg-gray-700 text-xs">+</button>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(itemRow);
+            });
+
+            updateTotal();
+        }
+
+        function getDeliveryFee() {
+            const deliveryType = document.querySelector('input[name="delivery"]:checked').value;
+            if (deliveryType === 'Jaamacad') return 2.00;
+            return 1.50; 
+        }
+
+        function updateTotal() {
+            if (cart.length === 0) {
+                document.getElementById('grand-total').innerText = "$0.00";
+                return;
+            }
+            let subtotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+            let total = subtotal + getDeliveryFee();
+            document.getElementById('grand-total').innerText = `$${total.toFixed(2)}`;
+        }
+
+        function scrollToCart() {
+            document.getElementById('cart-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function sendOrderViaWhatsApp() {
+            if (cart.length === 0) {
+                alert("Fadlan marka hore menu-ga wax ka dalbo!");
+                return;
+            }
+
+            const deliveryType = document.querySelector('input[name="delivery"]:checked').value;
+            const address = document.getElementById('delivery-address').value.trim() || "Aan la cayimin";
+            const deliveryFee = getDeliveryFee();
+            let subtotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+            let grandTotal = subtotal + deliveryFee;
+
+            // Dhisidda qoraalka farriinta WhatsApp-ka
+            let message = `*🔥 DALAB CUSUB (CYBER APP) * \n\n`;
+            message += `*📋 Cuntooyinka La Dalbaday:*\n`;
+            
+            cart.forEach((item, index) => {
+                message += `${index + 1}. ${item.name} (Tirada: *${item.qty}*) -> $${(item.price * item.qty).toFixed(2)}\n`;
+            });
+
+            message += `\n*🚚 Nooca Delivery-ga:* ${deliveryType} ($${deliveryFee.toFixed(2)})\n`;
+            message += `*📍 Ciwaanka/Address:* ${address}\n\n`;
+            message += `---------------------------\n`;
+            message += `*💰 WADARTA GUUD: $${grandTotal.toFixed(2)}*\n`;
+            message += `---------------------------`;
+
+            // Fariinta loo badalayo url safe
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
+
+            // Toos ugu kaxay macamiilka WhatsApp-ka
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
